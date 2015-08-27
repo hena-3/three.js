@@ -40,7 +40,7 @@ bl_info = {
     'name': "Three.js Format",
     'author': "repsac, mrdoob, yomotsu, mpk, jpweeks, rkusa, tschw",
     'version': (1, 4, 0),
-    'blender': (2, 7, 3),
+    'blender': (2, 73, 0),
     'location': "File > Export",
     'description': "Export Three.js formatted JSON files.",
     'warning': "Importer not included.",
@@ -116,6 +116,7 @@ bpy.types.Material.THREE_blending_type = EnumProperty(
 
 bpy.types.Material.THREE_depth_write = BoolProperty(default=True)
 bpy.types.Material.THREE_depth_test = BoolProperty(default=True)
+bpy.types.Material.THREE_double_sided = BoolProperty(default=False)
 
 class ThreeMaterial(bpy.types.Panel):
     """Adds custom properties to the Materials of an object"""
@@ -149,6 +150,10 @@ class ThreeMaterial(bpy.types.Panel):
             row = layout.row()
             row.prop(mat, 'THREE_depth_test',
                      text="Enable depth testing")
+
+            row = layout.row()
+            row.prop(mat, 'THREE_double_sided',
+                     text="Double-sided")
 
 def _mag_filters(index):
     """Three.js mag filters
